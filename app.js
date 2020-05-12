@@ -11,10 +11,12 @@ const errorController = require('./controllers/error')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const path = require('path')
+//var cors = require('cors')
 
 
 
 const app = express()
+app.use(cors())
 app.use('/static', express.static('images'))
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'gidiShare-frontend/build')))
@@ -22,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'gidiShare-frontend/build')))
 
 app.use(bodyParser.json())
 app.use(cookieParser())
-app.use(cors({credentials: true, origin: true}))
+//app.use(cors({credentials: true, origin: true}))
 
 
 const fileStorage = multer.diskStorage({

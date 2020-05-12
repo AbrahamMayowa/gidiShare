@@ -114,7 +114,9 @@ module.exports = {
                 imageUrl: user.imageUrl,
             }
         }catch(error){
+          
             throw error
+          
         }
     
         
