@@ -4,7 +4,6 @@ const validate = require('validator')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
-const Env = require('../env')
 const deleteImage = require('../utiity/deleteImage')
 require('dotenv').config()
 
