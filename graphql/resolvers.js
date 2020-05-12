@@ -6,7 +6,7 @@ const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
 const Env = require('../env')
 const deleteImage = require('../utiity/deleteImage')
-
+require('dotenv').config()
 
 module.exports = {
     createUser: async function({userData}, req){
@@ -48,7 +48,7 @@ module.exports = {
 
         const user = await savedUser.save()
 
-        const token = jwt.sign({userId: user._id}, Env.jwtSecret, {expiresIn: '15min'})
+        const token = jwt.sign({userId: user._id}, process.env.jwtSecret, {expiresIn: '15min'})
 
         const expirationDate = Date.now() + 900000
         return {
@@ -102,7 +102,7 @@ module.exports = {
     
             await user.save()
             
-            const token = jwt.sign({userId: user._id}, Env.jwtSecret, {expiresIn: '15min'})
+            const token = jwt.sign({userId: user._id}, process.env.jwtSecret, {expiresIn: '15min'})
 
             const expirationDate = Date.now() + 900000
 
@@ -429,7 +429,7 @@ module.exports = {
             throw err
             }
             
-            const token = jwt.sign({userId: user._id}, Env.jwtSecret, {expiresIn: '15min'})
+            const token = jwt.sign({userId: user._id}, process.env.jwtSecret, {expiresIn: '15min'})
             const expirationDate = Date.now() + 900000
 
             return {expiresIn: expirationDate, token: token, username: user.username, imageUrl: user.imageUrl}

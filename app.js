@@ -86,7 +86,7 @@ app.use(errorController.errorHandler)
 
 
 
-mongoose.connect(env.mongooseUrl, {useNewUrlParser: true, useUnifiedTopology: true}).then(connected =>{
+mongoose.connect(process.env.mongooseUrl, {useNewUrlParser: true, useUnifiedTopology: true}).then(connected =>{
   app.listen(5000, () => console.log('connected'))
 })
 .catch(error => console.log(error))

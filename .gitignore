@@ -1,3 +1,4 @@
 node_modules
 env.js
 gidiShare-frontend/node_modules
+.env
