@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const env = require('../env')
+
 const User = require('../models/user')
 
 module.exports = async (req, res, next) => {
@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
     let decodedToken;
     let user
     try {
-      decodedToken = jwt.verify(token, env.jwtSecret);
+      decodedToken = jwt.verify(token, process.env.jwtSecret);
       user = await User.findById(decodedToken.userId)
     } catch (err) {
       req.isAuth = false;

@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs')
 const User = require('../models/user')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
-const Env = require('../env')
 const deleteImage = require('../utiity/deleteImage')
 
 module.exports = async (req, res, next)=>{
