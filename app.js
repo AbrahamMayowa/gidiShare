@@ -74,7 +74,6 @@ app.get('*', (req, res) => {
       const data = err.originalError.data
       const message = err.originalError.message || 'An error occured'
       const code = err.originalError.code
-      //console.log(err)
       return {message: message, status: code, data: data}
     }
   })
@@ -85,9 +84,9 @@ app.get('*', (req, res) => {
 app.use(errorController.errorHandler)
 
 
-
+const port = process.env.PORT || 5000
 mongoose.connect(process.env.mongooseUrl, {useNewUrlParser: true, useUnifiedTopology: true}).then(connected =>{
-  app.listen(5000, () => console.log('connected'))
+  app.listen(port, () => console.log('connected'))
 })
 .catch(error => console.log(error))
 
