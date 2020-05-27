@@ -14,6 +14,6 @@ module.exports = async (req, res, next)=>{
     return res.status(422).json({message: 'Image is required'})
   }
 
-  return res.status(201).json({imageUrl: image.filename, imagePath: image.path})
+  return res.status(201).json({imageUrl: image.location, imagePath: image.key})
 
 }

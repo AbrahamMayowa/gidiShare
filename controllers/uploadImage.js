@@ -14,6 +14,6 @@ module.exports = async (req, res, next)=>{
         return res.status(402).json({message: 'Attach valid image'})
     }
 
-    return res.status(201).json({message: 'Image uploaded', imageUrl: image.filename})
+    return res.status(201).json({message: 'Image uploaded', imageUrl: image.location})
 
 }

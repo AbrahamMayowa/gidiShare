@@ -11,7 +11,11 @@ const errorController = require('./controllers/error')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const path = require('path')
-//var cors = require('cors')
+const aws = require( 'aws-sdk' )
+const multerS3 = require( 'multer-s3' )
+
+const {s3} = require('./utiity/deleteImage')
+
 
 
 
@@ -27,14 +31,18 @@ app.use(cookieParser())
 //app.use(cors({credentials: true, origin: true}))
 
 
-const fileStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'images');
-    },
-    filename: (req, file, cb) => {
-      cb(null, new Date().toISOString() + '-' + file.originalname);
-    }
-  });
+
+const s3Storage = multerS3({
+  s3,
+  bucket: 'bend-and-select.com',
+  acl: 'public-read',
+  metadata: function(req, file, cb){
+    cb(null, {fieldName: file.fieldname})
+  },
+  key: function(req, file, cb){
+    cb(null, new Date().toISOString() + '-' + file.originalname)
+  }
+})   
   
   const fileFilter = (req, file, cb) => {
     if (
@@ -50,7 +58,7 @@ const fileStorage = multer.diskStorage({
 
 
 app.use(
-    multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
+    multer({ storage: s3Storage, fileFilter: fileFilter }).single('image')
   )
 
   app.use(isAuth)

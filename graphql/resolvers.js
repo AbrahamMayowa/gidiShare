@@ -12,7 +12,7 @@ module.exports = {
 
         if (validate.isEmpty(userData.username) || validate.isEmpty(userData.password)){
         //delete the saved image in the file storage if the process is not successful
-            deleteImage.deleteFile(userData.imagePath)
+            deleteImage.deleteS3Image(userData.imagePath)
             const err = new Error('Operation fails! Provide a valid input')
             err.code = 422
             throw err
@@ -21,7 +21,7 @@ module.exports = {
         const existingUser = await User.findOne({username: userData.username})
 
         if(existingUser){
-            deleteImage.deleteFile(userData.imagePath)
+            deleteImage.deleteS3Image(userData.imagePath)
             const error = new Error('The username is not available. Choose another username')
             error.code = 422
             throw error
