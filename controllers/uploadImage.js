@@ -5,7 +5,7 @@ module.exports = async (req, res, next)=>{
 
     if(!req.isAuth){
         if(image){
-            deleteImage.deleteFile(image.path)
+            deleteImage.deleteS3Image(image.location)
         }
         return res.status(401).json({message: 'Not authenticated'})
 

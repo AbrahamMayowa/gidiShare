@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
     } catch (err) {
       req.isAuth = false;
       req.user = null
-      return next();
+      return next(err);
     }
     if (!decodedToken) {
       req.isAuth = false;
