@@ -34,7 +34,7 @@ app.use(cookieParser())
 
 const s3Storage = multerS3({
   s3,
-  bucket: 'bend-and-select.com',
+  bucket: 'gidishare.com',
   acl: 'public-read',
   metadata: function(req, file, cb){
     cb(null, {fieldName: file.fieldname})

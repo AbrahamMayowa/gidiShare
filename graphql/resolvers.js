@@ -76,7 +76,7 @@ module.exports = {
             const user = await User.findOne({username: username})
             if(!user){
                 const err = new Error('A user with this user is not found')
-                err.code = 404
+                err.code = 422
                 err.data = null
                 throw err
             }
